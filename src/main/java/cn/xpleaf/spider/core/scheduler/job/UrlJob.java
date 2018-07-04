@@ -34,7 +34,7 @@ public class UrlJob implements Job {
             jedis.sadd(domain + SpiderConstants.SPIDER_DOMAIN_HIGHER_SUFFIX, seedUrl);
             logger.info("获取种子:{}", seedUrl);
         }
-        JedisUtil.returnJedis(jedis);
+        JedisUtil.returnJedis(jedis);//关闭jedis
 //        System.out.println("Scheduler Job Test...");
     }
 

@@ -59,7 +59,7 @@ public class RandomRedisRepositoryImpl implements IRepository {
         for(String domain : domains) {
             higherUrlKey = domain + SpiderConstants.SPIDER_DOMAIN_HIGHER_SUFFIX;
             lowerUrlKey = domain + SpiderConstants.SPIDER_DOMAIN_LOWER_SUFFIX;
-            jedis.del(higherUrlKey, lowerUrlKey);
+            jedis.del(higherUrlKey, lowerUrlKey);//将hi,low删除
         }
         JedisUtil.returnJedis(jedis);
     }
@@ -112,7 +112,8 @@ public class RandomRedisRepositoryImpl implements IRepository {
      * @param url   需要添加的url
      * @param urlTypeSuffix  url类型后缀.higher或.lower
      */
-    public void offerUrl(String url, String urlTypeSuffix) {
+    public void offerUrl(String url, String urlTypeSuffix)
+    {
         Jedis jedis = JedisUtil.getJedis();
         String domain = SpiderUtil.getTopDomain(url);   // 获取url对应的顶级域名，如jd.com
         String key = domain + urlTypeSuffix;            // 拼接url队列的key，如jd.com.higher

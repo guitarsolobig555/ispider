@@ -2,6 +2,7 @@ package cn.xpleaf.spider;
 
 import cn.xpleaf.spider.core.pojo.Page;
 import cn.xpleaf.spider.core.store.IStore;
+
 import cn.xpleaf.spider.core.store.impl.HBaseStoreImpl;
 import cn.xpleaf.spider.core.store.impl.MySQLStoreImpl;
 import org.junit.Test;

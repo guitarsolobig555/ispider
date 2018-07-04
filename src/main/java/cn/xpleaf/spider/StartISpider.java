@@ -42,11 +42,11 @@ public class StartISpider {
         iSpider.setUrlLevelMarker("suning.com", snMarker);
 
         // 3.注入存储器
-        iSpider.setStore(new ConsoleStore());
+        iSpider.setStore(new MySQLStoreImpl());
 
         // 4.设置种子url
         iSpider.setSeedUrls("https://list.jd.com/list.html?cat=9987,653,655&page=1");
-        iSpider.setSeedUrls("https://list.suning.com/0-20006-0.html");
+        //iSpider.setSeedUrls("https://list.suning.com/0-20006-0.html");
 
         // 5.设置url仓库
         iSpider.setRepository(new RandomRedisRepositoryImpl()); // 设置url仓库

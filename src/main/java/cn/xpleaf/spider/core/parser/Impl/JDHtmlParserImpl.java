@@ -30,8 +30,14 @@ public class JDHtmlParserImpl implements IParser {
          * cleaner.clean()方法，如果page.getContent为null，那么整个程序就会一直阻塞在这里
          * 所以，在前面的代码中ISpider.start()方法，下载网页后，需要对内容进行判断，如果content为空，则跳过解析
          */
-        TagNode rootNode = cleaner.clean(page.getContent());
-
+        TagNode rootNode=null;
+        if(page.getContent()!=null) {
+             rootNode = cleaner.clean(page.getContent());
+        }
+        else
+        {
+            return;
+        }
         long start = System.currentTimeMillis();    // 解析开始时间
         // 进行判断 根据url的类型进行列表解析还是商品解析
         if (page.getUrl().startsWith("https://item.jd.com/")) {  // 解析商品

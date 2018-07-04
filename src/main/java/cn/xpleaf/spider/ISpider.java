@@ -90,7 +90,8 @@ public class ISpider {
      * 注册zk
      */
     private void registerZK() {
-        String zkStr = "uplooking01:2181,uplooking02:2181,uplooking03:2181";
+        //String zkStr = "uplooking01:2181,uplooking02:2181,uplooking03:2181";
+        String zkStr="10.23.14.241:2181";
         int baseSleepTimeMs = 1000;
         int maxRetries = 3;
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(baseSleepTimeMs, maxRetries);
@@ -127,8 +128,10 @@ public class ISpider {
                             // 下载网页
                             Page page = download(url);
                             // 解析网页
-                            if (page.getContent() != null) { // 只有content不为null时才进行后面的操作，否则没有意义
-                                parser(page, domain); // 如果该url为列表url，从这里有可能解析出很多的url
+                            if (page.getContent() != null)
+                            { // 只有content不为null时才进行后面的操作，否则没有意义
+                                parser(page, domain);
+                                System.out.println(page.getId());// 如果该url为列表url，从这里有可能解析出很多的url
                                 for (String pUrl : page.getUrls()) { // 向url仓库中添加url
                                     String higherUrlMark = urlLevelMarker.get(domain).get("higher");
                                     String lowerUrlMark = urlLevelMarker.get(domain).get("lower");

@@ -15,3 +15,4 @@ public class HBaseStoreImpl implements IStore {
         HBaseUtil.store(page);
     }
 }
+
