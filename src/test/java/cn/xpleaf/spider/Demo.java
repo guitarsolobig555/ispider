@@ -79,13 +79,13 @@ public class Demo
         repository.offerHigher("https://list.jd.com/list.html?cat=9987,653,655&page=1");
         /*getAllHiger("https://list.jd.com/list.html?cat=9987,653,655&page=1");
         System.out.println(all.size());*/
-       // ScheduledExecutorService es = Executors.newScheduledThreadPool(5);
-       // for (int i = 0; i < 5; i++)
-       // {
-          //  es.execute(new Runnable()
-            //{
-               // @Override
-                //public void run() {
+      ScheduledExecutorService es = Executors.newScheduledThreadPool(5);
+       for (int i = 0; i < 5; i++)
+        {
+            es.execute(new Runnable()
+            {
+                @Override
+                public void run() {
                     while (true)
                     {  // 要想开启循环爬取商品，则必须是执行一个死循环
                        String url = repository.poll();
@@ -125,8 +125,8 @@ public class Demo
                             SpiderUtil.sleep(2000);
                             }
                     }
-                //}
-          //  });
-        //}//
+                }
+            });
+        }
     }
 }

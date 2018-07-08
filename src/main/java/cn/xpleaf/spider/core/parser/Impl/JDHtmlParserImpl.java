@@ -109,14 +109,14 @@ public class JDHtmlParserImpl implements IParser {
         // 6.params; 商品规格参数
         // Map<String, Map<String, String>>
         // {"主体": {"品牌": Apple}, "型号": "IPhone 7 Plus", "基本信息":{"机身颜色":"玫瑰金"}}
-        JSONObject paramObj = HtmlUtil.getParams(tagNode, "//*[@id=\"detail\"]/div[2]/div[2]/div[1]/*", "//h3", "//dl");
+        /*JSONObject paramObj = HtmlUtil.getParams(tagNode, "//*[@id=\"detail\"]/div[2]/div[2]/div[1]/*", "//h3", "//dl");
         if (paramObj.has("主体")) {
             if (paramObj.getJSONObject("主体").has("品牌")) {
                 String brand = paramObj.getJSONObject("主体").getString("品牌");
                 page.setBrand(brand);
             }
         }
-        page.setParams(paramObj.toString());
+        page.setParams(paramObj.toString());*/
 
         // 7.商品评论数
         // 注意JsonObj和JsonArray的不同获取方法
