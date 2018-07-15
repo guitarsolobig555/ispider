@@ -37,7 +37,12 @@ public class pagePraser
         String con= HttpUtils.getContent(url);
         Document doc=Jsoup.parse(con);
         Elements elements=doc.getElementsByClass("post_content_main");
-        System.out.println(elements.attr("h1"));
+
+        Elements elements1=doc.getElementsByClass("post_time_source");
+        for(Element element :elements)
+        {
+            System.out.println(element.getElementsByTag("h1").text());
+        }
     }
 
 
