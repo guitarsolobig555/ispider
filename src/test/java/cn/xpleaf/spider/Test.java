@@ -1,5 +1,21 @@
 package cn.xpleaf.spider;
-import org.slf4j.LoggerFactory;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /*将字符串 "PAYPALISHIRING" 以Z字形排列成给定的行数：
 P   A   H   N
 A P L S I I G
@@ -20,60 +36,36 @@ Y A   H R
 P     I*/
 public class Test
 {
-    public static void sort(String str,int numsRows)
-    {
-        int len = str.length();int k = len / (2 * (numsRows - 1));int l = len % (2 * (numsRows - 1));
-        int tmp = k * (numsRows - 1);
-        int numsRows2 = 0;
-        if (l == 0) {
-            numsRows2 = tmp;
-        }
-
-            if (l <= numsRows) {
-                numsRows2 = tmp + 1;
-            }
-            if (l > numsRows) {
-                numsRows2 = tmp + 1 + l - numsRows;
-            }
-            char[][] ch = new char[numsRows][numsRows2];
-            int j = 0;
-            int count = 0;
-            for (int i = 0; i < numsRows2&&count<len; i++)
-            {
-                if (i % (numsRows - 1) == 0) {
-                    while (j < numsRows&&count<len) {
-                        ch[j++][i] = str.charAt(count++);
-                    }
-                    j=numsRows-2;
-                } else {
-                    ch[j--][i] = str.charAt(count++);
-                }
-            }
-            j=0;
-            String s="";
-            for(int i=0;i<numsRows;i++)
-            {
-                while(j<numsRows2)
-                {
-                    if(ch[i][j]=='\0')
-                    {
-                      j++;
-                      continue;
-                    }
-                    else {
-                        s = s + ch[i][j++];
-                    }
-                }
-                j=0;
-            }
-            System.out.println(s);
-    }
-
-  public static void main(String[] args)
-  {
-    String str="PAYPALISHIRING";
-    sort(str,3);
-
-
+  public static void main(String[] args) throws IOException {
+      Set<String> list=new HashSet<>();
+      Set<String> hashset=new HashSet<>();
+      CloseableHttpClient closeableHttpClient= HttpClients.custom().build();
+      String url="http://news.163.com/";
+      HttpGet httpGet=new HttpGet(url);
+      HttpResponse httpResponse=closeableHttpClient.execute(httpGet);
+      HttpEntity entity=httpResponse.getEntity();
+      String content= EntityUtils.toString(entity);
+      Document doc= Jsoup.parse(content);
+      Elements elements=doc.select("a");
+      list.add("http://www.163.com/");
+      list.add("http://war.163.com");
+      list.add("http://sports.163.com");
+      list.add("http://money.163.com");
+      list.add("http://auto.163.com");
+      list.add("http://tech.163.com");
+      list.add("http://fashion.163.com");
+      list.add("http://digi.163.com/");
+      list.add("http://house.163.com");
+      list.add("http://home.163.com");
+      list.add("http://daxue.163.com");
+      list.add("http://tech.163.com");
+      list.add("http://mobile.163.com/");
+      list.add("http://lady.163.com/");
+      list.add("http://travel.163.com/");
+      list.add("http://art.163.com/");
+      for(Element e:elements) {
+         String str= e.attr("href");
+         hashset.add(str);
+      }
   }
 }

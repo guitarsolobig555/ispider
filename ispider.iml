@@ -135,6 +135,7 @@
     <orderEntry type="library" name="Maven: org.apache.curator:curator-client:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.quartz-scheduler:quartz:1.8.4" level="project" />
     <orderEntry type="library" name="Maven: javax.transaction:jta:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.11.3" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4.4" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
   </component>
