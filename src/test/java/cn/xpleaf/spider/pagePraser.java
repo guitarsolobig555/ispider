@@ -1,5 +1,6 @@
 package cn.xpleaf.spider;
 
+import cn.xpleaf.spider.core.pojo.Page;
 import cn.xpleaf.spider.utils.JedisUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,6 +17,9 @@ public class pagePraser
     private static Set<String> hashset=new HashSet<>();
     private static Jedis getJedis=null;
     static Pattern pattern=new Pattern();
+    static page page;
+
+
     public static void parserBegin(String content)
     {
         getJedis= JedisUtil.getJedis();
@@ -28,25 +32,19 @@ public class pagePraser
             }
         }
     }
-    public static void parserEnd(String content)
+    public static page parserEnd(String content)
     {
         Document doc= Jsoup.parse(content);
-    }
-    public static void  main(String[] args) throws IOException {
-        String url="http://news.163.com/18/0715/17/DMP8LNF60001875N.html";
-        String con= HttpUtils.getContent(url);
-        Document doc=Jsoup.parse(con);
         Elements elements=doc.getElementsByClass("post_content_main");
         Elements elements1=doc.getElementsByClass("post_time_source");
         for(Element element :elements)
         {
-            System.out.println(element.getElementsByTag("h1").text());
+            page.setTitle(element.getElementsByTag("h1").text());
         }
         for(Element element :elements1)
         {
-            System.out.println(element.getElementsByTag("a").attr("href"));
+            page.setUrl(element.getElementsByTag("a").attr("href"));
         }
+        return page;
     }
-
-
 }
