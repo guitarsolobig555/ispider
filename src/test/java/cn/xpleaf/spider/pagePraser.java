@@ -14,26 +14,22 @@ import java.util.Set;
 
 public class pagePraser
 {
-    private static Set<String> hashset=new HashSet<>();
     private static Jedis getJedis=null;
     static Pattern pattern=new Pattern();
-    static page page;
-
-
-    public static void parserBegin(String content)
+    public static void parserBegin(Jedis jedis,String content)
     {
-        getJedis= JedisUtil.getJedis();
         Document doc= Jsoup.parse(content);
         Elements elements=doc.select("a");
         for(Element e:elements) {
             String str= e.attr("href");
-            if(Pattern.isRight(str)&&!hashset.contains(str)) {
-                getJedis.lpush("url", str);
+            if(Pattern.isRight(str)&&!Util.hashSet.contains(str)) {
+                jedis.lpush("url", str);
             }
         }
     }
     public static page parserEnd(String content)
     {
+        page page=new page();
         Document doc= Jsoup.parse(content);
         Elements elements=doc.getElementsByClass("post_content_main");
         Elements elements1=doc.getElementsByClass("post_time_source");

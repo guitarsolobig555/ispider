@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
 
 /*将字符串 "PAYPALISHIRING" 以Z字形排列成给定的行数：
 P   A   H   N
@@ -40,13 +41,15 @@ public class Test
       Set<String> list=new HashSet<>();
       Set<String> hashset=new HashSet<>();
       CloseableHttpClient closeableHttpClient= HttpClients.custom().build();
-      String url="http://news.163.com/";
+      String url="http://news.163.com/16/0602/16/BOIMS8PF00014JB5.html ";
+      url=url.replaceAll(" ","");
       HttpGet httpGet=new HttpGet(url);
       HttpResponse httpResponse=closeableHttpClient.execute(httpGet);
       HttpEntity entity=httpResponse.getEntity();
       String content= EntityUtils.toString(entity);
+      System.out.println(content);
       Document doc= Jsoup.parse(content);
-      Elements elements=doc.select("a");
+     /* Elements elements=doc.select("a");
       list.add("http://www.163.com/");
       list.add("http://war.163.com");
       list.add("http://sports.163.com");
@@ -63,9 +66,17 @@ public class Test
       list.add("http://lady.163.com/");
       list.add("http://travel.163.com/");
       list.add("http://art.163.com/");
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("//(.*?)/");
       for(Element e:elements) {
          String str= e.attr("href");
-         hashset.add(str);
-      }
+          Matcher matcher = pattern.matcher(str);
+          while(matcher.find())
+          {
+              System.out.println(matcher.group(1));
+          }
+        //  System.out.println(matcher.group(1));
+          //System.out.println(str);
+        // hashset.add(str);
+      }*/
   }
 }

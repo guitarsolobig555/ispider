@@ -61,7 +61,6 @@ public class HttpUtil {
      * @return
      */
     public static String getHttpContent(String url) {
-
         CloseableHttpClient httpClient = null;
         HttpHost proxy = null;
         if (IPProxyRepository.size() > 0) {  // 如果ip代理地址库不为空，则设置代理
