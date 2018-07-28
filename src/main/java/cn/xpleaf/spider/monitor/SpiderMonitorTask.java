@@ -39,7 +39,8 @@ public class SpiderMonitorTask implements Watcher {
      * 所以要获取初始的节点状态
      */
     public SpiderMonitorTask() {
-        String zkStr = "uplooking01:2181,uplooking02:2181,uplooking03:2181";
+        //String zkStr = "uplooking01:2181,uplooking02:2181,uplooking03:2181";
+        String zkStr="192.168.1.105:2181";
         int baseSleepTimeMs = 1000;
         int maxRetries = 3;
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(baseSleepTimeMs, maxRetries);

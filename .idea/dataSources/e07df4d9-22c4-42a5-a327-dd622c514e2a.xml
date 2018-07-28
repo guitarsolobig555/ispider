@@ -947,12 +947,14 @@
       <Position>2</Position>
       <Comment>商品页面的手机标题</Comment>
       <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="233" parent="211" name="url">
       <Position>3</Position>
       <Comment>手机详细信息地址</Comment>
       <DataType>varchar(500)|0</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="234" parent="211" name="PRIMARY">

@@ -23,14 +23,14 @@ public class MailUtil {
             // 会话需要的相关信息
             Properties prop = new Properties();
             prop.setProperty("mail.transport.protocol", "smtp");// 发送邮件的协议
-            prop.setProperty("mail.smtp.host", "smtp.126.com");// 使用的邮箱服务器
+            prop.setProperty("mail.smtp.host", "smtp.163.com");// 使用的邮箱服务器
             prop.setProperty("mail.smtp.auth", "true");
             session = Session.getInstance(prop);
             session.setDebug(false);//开启调试模式
             // 创建邮件
             MimeMessage message = new MimeMessage(session);
-            InternetAddress fromAddr = new InternetAddress("429191942@qq.com", "爬虫节点监控系统");// 发件人的信息，请填写自己的
-            InternetAddress toAddr = new InternetAddress("xpleaf@163.com", "叶子");// 收件人的信息，请填写自己的
+            InternetAddress fromAddr = new InternetAddress("ljz950318@163.com", "爬虫节点监控系统");// 发件人的信息，请填写自己的
+            InternetAddress toAddr = new InternetAddress("727175900@qq.com", "叶子");// 收件人的信息，请填写自己的
             message.setFrom(fromAddr);// 在信封上写上
             message.setRecipient(Message.RecipientType.TO, toAddr);
 
@@ -39,7 +39,7 @@ public class MailUtil {
 
             // 发送邮件
             t = session.getTransport();
-            t.connect("lhsteach2017@126.com", "abc123123");//这里登陆的时候最好使用126邮箱经过认证之后的密码，请填写自己的
+            t.connect("ljz950318@163.com", "wendao134879.!.");//这里登陆的时候最好使用126邮箱经过认证之后的密码，请填写自己的
             t.sendMessage(message, message.getAllRecipients());
         } catch (Exception e) {
             e.printStackTrace();

@@ -32,14 +32,9 @@ public class pagePraser
         page page=new page();
         Document doc= Jsoup.parse(content);
         Elements elements=doc.getElementsByClass("post_content_main");
-        Elements elements1=doc.getElementsByClass("post_time_source");
         for(Element element :elements)
         {
             page.setTitle(element.getElementsByTag("h1").text());
-        }
-        for(Element element :elements1)
-        {
-            page.setUrl(element.getElementsByTag("a").attr("href"));
         }
         return page;
     }

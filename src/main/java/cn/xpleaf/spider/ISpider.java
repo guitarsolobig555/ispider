@@ -91,7 +91,7 @@ public class ISpider {
      */
     private void registerZK() {
         //String zkStr = "uplooking01:2181,uplooking02:2181,uplooking03:2181";
-        String zkStr="10.23.14.241:2181";
+        String zkStr="192.168.1.105:2181";
         int baseSleepTimeMs = 1000;
         int maxRetries = 3;
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(baseSleepTimeMs, maxRetries);
